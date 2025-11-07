@@ -1,0 +1,86 @@
+//
+// 1.
+//
+
+/*
+
+const book = { 
+ title: 'Wiedźmin', 
+ author: 'Andrzej Sapkowski', 
+ pages: 332, 
+ isAvailable: true, 
+ displayInfo: function() { 
+  console.log('Informacje o książce'); 
+ } 
+};
+
+    Wskaż, które elementy obiektu book są właściwościami, a które metodami 
+        wszystkie poza displayInfo to właściwośći, a displayInfo to metoda
+    Wyjaśnij, dlaczego grupowanie tych danych w obiekt jest lepsze niż tworzenie oddzielnych zmiennych 
+        lepsza organizacja kodu czy coś.
+    Jak wywołasz metodę displayInfo? 
+        book.displayInfo();
+*/
+
+//
+// 2.
+//
+
+const student ={
+    fName: "Joe",
+    lName: "Biden",
+    studentId: 97,
+    avgGrade: function(){
+        console.log("Nie wprowadzono jeszcze żadnych ocen...");
+    },
+    showInfo: function(){
+        console.log("first Name : "+student.fName);
+        console.log("Last Name : "+student.lName);
+        console.log("Student ID : "+student.studentId);
+    }
+};
+student.showInfo();
+student.avgGrade();
+
+//
+// 3.
+//
+console.log("")
+
+const product ={
+    name: "Laptop Dell Vostro 15 3510 NVMe DDR4 I3 NobaraOS",
+    price: 1379.99,
+    stock: 2,
+    category: "Laptop",
+    specifications :{
+        ram: "24gb (8+16) 3200mhz",
+        disk: "1tb Lexar 620nm 3300 / 3000",
+        cpu: "Intel Core I3-115G4"
+    },
+    displayProduct: function(){
+        console.log(product.name+" za "+product.price+"zł. Kategorii produktu : "+product.category+". Stan w magazynie : "+product.stock);
+    },
+    isAvaible: function(){
+        if (product.stock>0){
+            console.log(true);
+        }
+        else{
+            console.log(false);
+        }
+    },
+    sell: function(){
+        if (product.stock>0){
+            console.log("Sprzedano produkt "+product.name);
+            console.log("Aktualny stan : "+product.stock);
+            product.stock = product.stock-1;
+        }
+        else{
+            console.log("Już nie ma produktu"+product.name+" w magazynie")
+        }
+    }
+}
+product.displayProduct();
+product.isAvaible();
+product.sell();
+product.sell();
+product.isAvaible();
