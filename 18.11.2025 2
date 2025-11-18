@@ -1,0 +1,77 @@
+//
+// 1
+//
+
+function Book(title, author, year) {
+  this.title = title;
+  this.author = author;
+  this.year = year;
+
+  this.getSummary = function() {
+    console.log(this.title+" napisana przez "+this.author+"  w "+this.year);
+  };
+}
+const book1 = new Book("Lalka", "Bolesław Prus", 1890);
+const book2 = new Book("Pan Tadeusz", "Adam Mickiewicz", 1834);
+book1.getSummary();
+book2.getSummary();
+
+//
+// 2
+//
+
+function Product(name, price, category){
+    this.name = name,
+    this.price = price,
+    this.category = category,
+    this.inStock = true,
+    this.displayInfo = function(){
+        console.log(name + " z kategori " + category + " o cenie "+ price +"$");
+    },
+    this.applyDiscount = function(percentage){
+        price=Math.round(price*(percentage/100)).toFixed(2);
+        console.log("Nowa cena produktu " + name +" : "+ price +"$. Zmniejszono cene o " + percentage +"%");
+    }
+}
+const product1 = new Product("Borat", 67.99,"Film",true);
+const product2 = new Product("Sans Granie",420.69,"Sans Granie",false);
+const product3 = new Product("OS X Server", 2100.99, "System Operacyjny");
+product1.displayInfo();
+product2.displayInfo();
+product3.displayInfo();
+product1.applyDiscount(75);
+product1.displayInfo();
+
+//
+// 3
+//
+
+function Reservation(guestName,roomNumber,checkInDate,nights){
+    this.guestName = guestName,
+    this.roomNumber = roomNumber,
+    this.checkInDate = checkInDate,
+    this.nights = nights,
+    this.totalCost = nights*300,
+    this.status = "confirmed",
+    this.displayReservation = function(){
+        console.log(guestName + " zarezerwował pokój nr. "+ roomNumber +" od dnia "+ checkInDate + " na "+ nights +" noce. Całkowity koszt : "+ totalCost+ "$. Status rezerwacji : "+status + ".");
+    },
+    this.cancel = function(){
+        status = "Cancelled";
+        console.log("Rezerwacja dla " + guestName + " z dnia "+ checkInDate +" została odwołana.");
+    },
+    this.extend = function(extension){
+        nights=nights+extension;
+        console.log("Przedłużono pobyt " + guestName + " o "+ nights + " nocy.")
+    }
+}
+const res1 = new Reservation("John Goverment",78,"4.20",7);
+const res2 = new Reservation("Casper Crusader",12,"7.10",2);
+const res3 = new Reservation("David Martinez",3,"10.10",10); // bez operatora NEW obiekt się nie utworzy
+res2.displayReservation();
+res3.displayReservation();
+res1.cancel();
+res2.extend(3);
+res1.displayReservation();
+res2.displayReservation();
+res3.displayReservation();
