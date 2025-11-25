@@ -1,0 +1,95 @@
+//
+// 1.
+//
+
+const book = { 
+ title: 'JavaScript dla początkujących', 
+ pages: 350 
+}; 
+
+book.author = 'Jan Kowalski'; 
+book.price = 49.99; 
+delete book.pages; 
+book.title = 'JavaScript dla zaawansowanych'; 
+
+/*
+    Jakie właściwości będzie miał obiekt book po wykonaniu całego kodu? 
+        "JavaScript dla zaawansowanych", "Jan Kowalski", 49.99
+    Dlaczego możemy modyfikować obiekt book, mimo że został zadeklarowany ze słowem const? 
+        Bo sam obiekt można modyfikować
+    Czy poniższa instrukcja spowoduje błąd? Dlaczego? 
+    book = { title: 'Nowa książka' }; 
+        Tak, bo... yyy... const
+*/
+
+//
+// 2.
+//
+
+const student = {
+    name: "John Goverment",
+    age: 21,
+    major: "Informatyk",
+    introduce: function(){
+        console.log("Cześć, mam na imię " + this.name+ ", mam "+ this.age+ " lat i studiuję "+ this.major +".");
+    },
+    grades: [4, 5, 3],
+    getAverage: function(){
+        let avg = 0;
+        for (let i = 0; i < this.grades.length; i++) {
+            avg += this.grades[i];
+        }
+        avg = avg / this.grades.length;
+        console.log("Średnia ocen: " + avg);
+    }
+};
+
+student.introduce();
+student.getAverage();
+delete student.age;
+student.introduce();
+
+//
+// 3.
+//
+
+const bankAccount = {
+    accountNumber: "1234567890",
+    balance: 1000,
+    owner: "Anna Nowak",
+    transactions: [],
+    deposit: function(amount){
+        this.balance += amount;
+        this.transactions.push({
+            type: 'deposit',
+            amount: amount,
+            date: new Date()
+        });
+        console.log("Dodano " + amount + " zł do konta, aktualny balans: " + this.balance);
+    },
+    withdraw: function(amount){
+        if (amount > this.balance){
+            console.log("ERROR : Masz za małe saldo na koncie by wykonać tą operacje");
+        }
+        else{
+        this.balance -= amount;
+        this.transactions.push({
+            type: 'withdraw',
+            amount: amount,
+            date: new Date()
+        })};
+        console.log("Usunięto " + amount + " zł z konta, aktualny balans: " + this.balance);
+    },
+    getBalance: function(){
+        console.log("Aktualny balans: " + this.balance);
+    },
+    getTransactionHistory: function(){
+        console.log("Historia transakcji:", this.transactions);
+    },
+
+};
+bankAccount.deposit(500);
+bankAccount.withdraw(200);
+bankAccount.withdraw(2000);
+bankAccount.getBalance();
+bankAccount.getTransactionHistory();
